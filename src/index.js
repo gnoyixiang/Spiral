@@ -35,7 +35,7 @@ document.getElementById("form").addEventListener("submit", (evt) => {
   spiral(num, anticlockwise);
 });
 
-async function spiral(
+function spiral(
   num,
   anticlockwise = false,
   target = "spiral",
@@ -93,12 +93,9 @@ async function spiral(
         grid[y][x] = ++current;
 
         if (containerEl) {
-          containerEl.childNodes[y].childNodes[x].innerHTML = grid[y][x];
-          if (slowdown) {
-            await new Promise((resolve) => {
-              setTimeout(() => resolve(), slowdown);
-            });
-          }
+          setTimeout(() => {
+            containerEl.childNodes[y].childNodes[x].innerHTML = grid[y][x];
+          }, slowdown * current);
         }
       }
 
